@@ -19,15 +19,17 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     this.x += this.speed * dt;
-    
 
+    if(this.x >= 505) {
+      this.x = -150;
+    }
 };
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
-var enemy = new Enemy(10, 150);
+
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
@@ -44,26 +46,51 @@ var Player = function(x,y) {
     // a helper we've provided to easily load images
 };
 
-Player.prototype.update = function() {
+Player.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
 
 };
 
-// Draw the enemy on the screen, required method for game
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+Player.prototype.handleInput = function(pressKey) {
+  switch (pressKey) {
+    case 'left':
+      this.x -= this.speed + 30;
+      break;
+    case 'up':
+      this.y -= this.speed + 15;
+      break;
+    case 'right':
+      this.x += this.speed + 30;
+      break;
+    case 'down':
+      this.y += this.speed + 15;
+      break;
+  }
+};
+
+
+// Draw the enemy on the screen, required method for game
 // Now instantiate your objects.
+//sets position of all enemy bugs
+var badBug1 = new Enemy(0, 100, 100);
+var badBug2 = new Enemy(0, 250, 150);
+var badBug3 = new Enemy(0, 150, 200);
+
 // Place all enemy objects in an array called allEnemies
-var allEnemies = [];
-var badBug = new Enemy(0, 200);
-allEnemies.push(badBug);
+var allEnemies = [badBug1, badBug2, badBug3];
+
+allEnemies.push(badBug1);
+allEnemies.push(badBug2);
+allEnemies.push(badBug3);
 
 // Place the player object in a variable called player
-var player = new Player(200, 450);
+var player = new Player(200, 415);
 
 
 // This listens for key presses and sends the keys to your
