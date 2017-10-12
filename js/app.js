@@ -50,20 +50,34 @@ Player.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-
 };
 
-Player.prototype.render = function() {
+Player.prototype.render = function(dt) {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+  if (this.x > 505 ) {
+      this.x = 505;
+  }
+
+  if (this.y > 505) {
+      this.y = 505
+  }
+
+  if (this.x < 0) {
+      this.x = 0;
+  }
+
+  if (this.y < 0) {
+      this.y = 0;
+  };
 
 Player.prototype.handleInput = function(pressKey) {
   switch (pressKey) {
     case 'left':
-      this.x -= this.speed + 30;
+      this.x += this.speed + 30;
       break;
     case 'up':
-      this.y -= this.speed + 15;
+      this.y += this.speed + 15;
       break;
     case 'right':
       this.x += this.speed + 30;
