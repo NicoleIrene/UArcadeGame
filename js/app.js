@@ -1,4 +1,5 @@
 // Enemy Class -------------
+//Enemies our player must avoid
 // Variables applied to each of our instances go here:
 
 var Enemy = function(x,y,speed) {
