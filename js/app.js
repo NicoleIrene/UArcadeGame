@@ -1,10 +1,10 @@
-// Enemies our player must avoid
+// Enemy Class -------------
 // Variables applied to each of our instances go here:
 
 var Enemy = function(x,y,speed) {
-    this.x = x;
-    this.y = y;
-    this.height = 45;
+    this.x = x; 
+    this.y = y; 
+    this.height = 45; 
     this.width = 65;
     this.speed = speed;  
     this.sprite = 'images/enemy-bug.png';
@@ -12,10 +12,12 @@ var Enemy = function(x,y,speed) {
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
+
 Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+
     this.x += this.speed * dt;
 
     if(this.x >= 505) {
@@ -29,7 +31,7 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// Now write your own player class
+// Player class --------------------
 // This class requires an update(), render() and
 // a handleInput() method.
 
@@ -49,7 +51,7 @@ Player.prototype.render = function(dt) {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-//function to move Player
+//handleInput is a function to move Player
 Player.prototype.handleInput = function(pressKey) {
   switch (pressKey) {
     case 'left':
@@ -67,7 +69,7 @@ Player.prototype.handleInput = function(pressKey) {
   }
 
 //This keeps the player on screen
-//Alerts player when they have reached water block
+//Alerts player when they have reached water block 
   if (this.x > 475 ) {
       this.x = 475;
   }
@@ -96,14 +98,15 @@ Enemy.prototype.checkCollision = function() {
   player.reset();
 }
 }
-//reset function puts player at x,y coordinates when collision detected
+//reset function puts player back at 
+//x,y coordinates when collision detected
 Player.prototype.reset = function() {
   this.x = 200;
   this.y = 415;
 }
 
 // Draw the enemy on the screen, instantiate your objects
-//sets position of all enemy bugs
+//sets position and display all enemy bugs
 var badBug1 = new Enemy(0, 100, 100);
 var badBug2 = new Enemy(0, 250, 150);
 var badBug3 = new Enemy(0, 150, 200);
@@ -120,7 +123,7 @@ var player = new Player(200, 415);
 
 
 // This listens for key presses and sends the keys to your
-// Player.handleInput() method. You don't need to modify this.
+// Player.handleInput() method.
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
         37: 'left',
