@@ -42,6 +42,7 @@ var Player = function(x,y) {
     this.height = 75;
     this.width = 50;
     this.sprite = 'images/char-princess-girl.png';
+}
 
 Player.prototype.update = function(dt) {
  // multiply any movement by the dt parameter
@@ -71,12 +72,12 @@ Player.prototype.handleInput = function(pressKey) {
 
 //This keeps the player on screen
 //Alerts player when they have reached water block 
-  if (this.x > 475 ) {
-      this.x = 475;
+  if (this.x > 400 ) {
+      this.x = 400;
   }
 
-  if (this.y > 475) {
-      this.y = 475
+  if (this.y > 435) {
+      this.y = 435
   }
 
   if (this.x < 0) {
@@ -89,7 +90,7 @@ Player.prototype.handleInput = function(pressKey) {
   }
 };
 
-//Collision detection function between bugs & player 
+//Collision detection between bugs & player 
 Enemy.prototype.checkCollision = function() {
   if (this.x < player.x + player.width &&
    this.x + this.width > player.x &&
@@ -99,7 +100,7 @@ Enemy.prototype.checkCollision = function() {
   player.reset();
 }
 }
-//reset function puts player back at 
+//reset function puts player back at
 //x,y coordinates when collision detected
 Player.prototype.reset = function() {
   this.x = 200;
@@ -110,7 +111,7 @@ Player.prototype.reset = function() {
 //sets position and display all enemy bugs
 var badBug1 = new Enemy(0, 100, 100);
 var badBug2 = new Enemy(0, 250, 150);
-var badBug3 = new Enemy(0, 150, 200);
+var badBug3 = new Enemy(0, 150, 130);
 
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [badBug1, badBug2, badBug3];
