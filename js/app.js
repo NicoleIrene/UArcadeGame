@@ -1,5 +1,5 @@
 // Enemy Class -------------
-//Enemies our player must avoid
+// Enemies our player must avoid
 // Variables applied to each of our instances go here:
 
 var Enemy = function(x,y,speed) {
@@ -53,7 +53,7 @@ Player.prototype.render = function(dt) {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-//handleInput is a function to move Player
+// handleInput is a function to move Player
 Player.prototype.handleInput = function(pressKey) {
   switch (pressKey) {
     case 'left':
@@ -70,8 +70,8 @@ Player.prototype.handleInput = function(pressKey) {
       break;
   }
 
-//This keeps the player on screen
-//Alerts player when they have reached water block 
+// Keeps the player on screen within boundaries given
+// Alerts player when they have reached water block 
   if (this.x > 400 ) {
       this.x = 400;
   }
@@ -90,7 +90,7 @@ Player.prototype.handleInput = function(pressKey) {
   }
 };
 
-//Collision detection between bugs & player 
+// Collision detection between bugs & player 
 Enemy.prototype.checkCollision = function() {
   if (this.x < player.x + player.width &&
    this.x + this.width > player.x &&
@@ -100,27 +100,27 @@ Enemy.prototype.checkCollision = function() {
   player.reset();
 }
 }
-//reset function puts player back at
-//x,y coordinates when collision detected
+// Reset function puts player back at
+// x,y coordinates when collision detected
 Player.prototype.reset = function() {
   this.x = 200;
   this.y = 415;
 }
 
-// Draw the enemy on the screen, instantiate your objects
-//sets position and display all enemy bugs
+// Draws the enemy on the screen
+// sets position and displays all enemy bugs
 var badBug1 = new Enemy(0, 100, 100);
 var badBug2 = new Enemy(0, 250, 150);
 var badBug3 = new Enemy(0, 150, 130);
 
-// Place all enemy objects in an array called allEnemies
+// All enemy objects in an array called allEnemies
 var allEnemies = [badBug1, badBug2, badBug3];
 
 allEnemies.push(badBug1);
 allEnemies.push(badBug2);
 allEnemies.push(badBug3);
 
-// Place the player object in a variable called player
+// Player object in a variable called player
 var player = new Player(200, 415);
 
 
