@@ -1,14 +1,12 @@
 // Enemies our player must avoid
+// Variables applied to each of our instances go here:
+
 var Enemy = function(x,y,speed) {
     this.x = x;
     this.y = y;
+    this.height = 45;
+    this.width = 65;
     this.speed = speed;  
-
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
-
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
 };
 
@@ -21,8 +19,9 @@ Enemy.prototype.update = function(dt) {
     this.x += this.speed * dt;
 
     if(this.x >= 505) {
-      this.x = -150;
+      this.x = 1;
     }
+    this.checkCollision();
 };
 
 // Draw the enemy on the screen, required method for game
@@ -37,30 +36,44 @@ Enemy.prototype.render = function() {
 var Player = function(x,y) {
     this.x = x;
     this.y = y;
+    this.height = 75;
+    this.width = 50;
     this.sprite = 'images/char-princess-girl.png';
 
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
-
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
-};
-
 Player.prototype.update = function(dt) {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
+ // multiply any movement by the dt parameter
+
 };
 
 Player.prototype.render = function(dt) {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
-  if (this.x > 505 ) {
-      this.x = 505;
+
+//function to move Player
+Player.prototype.handleInput = function(pressKey) {
+  switch (pressKey) {
+    case 'left':
+      this.x -= 101;
+      break;
+    case 'up':
+      this.y -= 83;
+      break;
+    case 'right':
+      this.x += 101;
+      break;
+    case 'down':
+      this.y += 83;
+      break;
   }
 
-  if (this.y > 505) {
-      this.y = 505
+//This keeps the player on screen
+//Alerts player when they have reached water block
+  if (this.x > 475 ) {
+      this.x = 475;
+  }
+
+  if (this.y > 475) {
+      this.y = 475
   }
 
   if (this.x < 0) {
@@ -68,29 +81,28 @@ Player.prototype.render = function(dt) {
   }
 
   if (this.y < 0) {
-      this.y = 0;
-  };
-
-Player.prototype.handleInput = function(pressKey) {
-  switch (pressKey) {
-    case 'left':
-      this.x += this.speed + 30;
-      break;
-    case 'up':
-      this.y += this.speed + 15;
-      break;
-    case 'right':
-      this.x += this.speed + 30;
-      break;
-    case 'down':
-      this.y += this.speed + 15;
-      break;
+      alert("You've Won!");
+      this.reset();
   }
 };
 
+//Collision detection function between bugs & player 
+Enemy.prototype.checkCollision = function() {
+  if (this.x < player.x + player.width &&
+   this.x + this.width > player.x &&
+   this.y < player.y + player.height &&
+   this.height + this.y > player.y) {
+// collision detected, reset player back to original position 
+  player.reset();
+}
+}
+//reset function puts player at x,y coordinates when collision detected
+Player.prototype.reset = function() {
+  this.x = 200;
+  this.y = 415;
+}
 
-// Draw the enemy on the screen, required method for game
-// Now instantiate your objects.
+// Draw the enemy on the screen, instantiate your objects
 //sets position of all enemy bugs
 var badBug1 = new Enemy(0, 100, 100);
 var badBug2 = new Enemy(0, 250, 150);
