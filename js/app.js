@@ -3,6 +3,7 @@
 // Variables applied to each of our instances go here:
 
 var Enemy = function(x,y,speed) {
+  'use strict';
     this.x = x; 
     this.y = y; 
     this.height = 45; 
@@ -15,6 +16,7 @@ var Enemy = function(x,y,speed) {
 // Parameter: dt, a time delta between ticks
 
 Enemy.prototype.update = function(dt) {
+    'use strict';
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
@@ -37,6 +39,7 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 
 var Player = function(x,y) {
+    'use strict';
     this.x = x;
     this.y = y;
     this.height = 75;
@@ -45,16 +48,20 @@ var Player = function(x,y) {
 };
 
 Player.prototype.update = function(dt) {
+  'use strict';
+
  // multiply any movement by the dt parameter
 
 };
 
 Player.prototype.render = function(dt) {
+  'use strict';
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
 // handleInput is a function to move Player
 Player.prototype.handleInput = function(pressKey) {
+  'use strict';
   switch (pressKey) {
     case 'left':
       this.x -= 101;
@@ -92,6 +99,7 @@ Player.prototype.handleInput = function(pressKey) {
 
 // Collision detection between bugs & player 
 Enemy.prototype.checkCollision = function() {
+  'use strict';
   if (this.x < player.x + player.width &&
    this.x + this.width > player.x &&
    this.y < player.y + player.height &&
@@ -104,6 +112,7 @@ Enemy.prototype.checkCollision = function() {
 // Reset function puts player back at
 // x,y coordinates when collision detected
 Player.prototype.reset = function() {
+  'use strict';
   this.x = 200;
   this.y = 415;
 };
