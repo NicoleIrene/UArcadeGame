@@ -42,7 +42,7 @@ var Player = function(x,y) {
     this.height = 75;
     this.width = 50;
     this.sprite = 'images/char-princess-girl.png';
-}
+};
 
 Player.prototype.update = function(dt) {
  // multiply any movement by the dt parameter
@@ -77,7 +77,7 @@ Player.prototype.handleInput = function(pressKey) {
   }
 
   if (this.y > 435) {
-      this.y = 435
+      this.y = 435;
   }
 
   if (this.x < 0) {
@@ -99,13 +99,13 @@ Enemy.prototype.checkCollision = function() {
 // collision detected, reset player back to original position 
   player.reset();
 }
-}
+};
 // Reset function puts player back at
 // x,y coordinates when collision detected
 Player.prototype.reset = function() {
   this.x = 200;
   this.y = 415;
-}
+};
 
 // Draws the enemy on the screen
 // sets position and displays all enemy bugs
