@@ -97,7 +97,8 @@ Enemy.prototype.checkCollision = function() {
    this.y < player.y + player.height &&
    this.height + this.y > player.y) {
 // collision detected, reset player back to original position 
-  player.reset();
+   
+   player.reset();
 }
 };
 // Reset function puts player back at

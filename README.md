@@ -3,6 +3,7 @@
 
 ## Directions 
 
+* Load the index.html page in your favorite web browser.
 * Use the arrow keys to move player up, down, left and right.
 * Avoid collision with enemy bugs to reach the water.
 * If collision is detected, the game will **restart**.
